@@ -59,11 +59,8 @@ class SQLTableDisplay(QMainWindow):
             except sqlite3.Error as e:
                 print("SQLite error:", e)"""
 
-def main():
-    app = QApplication(sys.argv)
-    window = SQLTableDisplay()
-    window.show()
-    sys.exit(app.exec_())
 
-if __name__ == "__main__":
-    main()
+app = QApplication(sys.argv)
+window = SQLTableDisplay()
+window.show()
+app.exec()
