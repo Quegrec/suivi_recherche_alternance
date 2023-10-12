@@ -26,11 +26,15 @@ class SQLTableDisplay(QMainWindow):
 
         self.load_data()
 
-        btn_layout = QHBoxLayout()
+        btn_layout = QVBoxLayout()
         main_layout.addLayout(btn_layout)
         btn_valid = QPushButton("Valider modifications", self)
         btn_layout.addWidget(btn_valid)
-        btn_valid.clicked.connect(self.valider)        
+        btn_valid.clicked.connect(self.valider)
+        btn_ajout = QPushButton("Ajouter une nouvelle offre", self)
+        btn_layout.addWidget(btn_ajout)
+        btn_ajout.clicked.connect(self.ajouter)
+             
 
     def load_data(self):
         self.cursor.execute("SELECT * FROM offres")
@@ -44,20 +48,28 @@ class SQLTableDisplay(QMainWindow):
         for i, row in enumerate(data):
             for j, item in enumerate(row):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(str(item)))
+                """layout =QHBoxLayout()
+                btn_suppr = QPushButton("Supprimer la ligne", self)
+                layout.addWidget(btn_suppr)
+                btn_suppr.clicked.connect(self.suppr)"""
     
     def valider(self):
-            """try:
-                conn = sqlite3.connect("database.db")
-                cursor = conn.cursor()
+        """try:
+            conn = sqlite3.connect("database.db")
+            cursor = conn.cursor()
 
-                cursor.execute("SELECT postule FROM offres")
+            cursor.execute("SELECT postule FROM offres")
 
-                if [postule] == "non":
-                    # Perform the database update here (e.g., INSERT, UPDATE, DELETE)
-                    conn.commit()
-                conn.close()
-            except sqlite3.Error as e:
-                print("SQLite error:", e)"""
+            if [postule] == "non":
+                # Perform the database update here (e.g., INSERT, UPDATE, DELETE)
+                conn.commit()
+            conn.close()
+        except sqlite3.Error as e:
+            print("SQLite error:", e)"""
+    def ajouter(self):
+        pass
+    def suppr(self):
+        pass
 
 
 app = QApplication(sys.argv)
